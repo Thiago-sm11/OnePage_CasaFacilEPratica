@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>casa.facilepratica | Achadinhos da Vânia</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Variables & Theme Setup */
+        :root {
+            --primary-pink: #f8c0ca;
+            --primary-pink-hover: #f4a6b5;
+            --turquoise: #2cb5c4;
+            --turquoise-dark: #008796;
+            --bg-light: #fffcfd;
+            --card-bg-light: #ffffff;
+            --text-dark: #2d3748;
+            --text-muted: #718096;
+            --border-color: #f0e2e5;
+            --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-bs-theme="dark"] {
+            --primary-pink: #d87093;
+            --primary-pink-hover: #c55c7f;
+            --turquoise: #2cb5c4;
+            --turquoise-dark: #4cd5e4;
+            --bg-light: #121212;
+            --card-bg-light: #1e1e1e;
+            --text-dark: #f8f9fa;
+            --text-muted: #a0aec0;
+            --border-color: #2d3748;
+            --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Smooth Scroll Padding for Fixed Navbar */
+        html {
+            scroll-padding-top: 80px;
+        }
+
+        /* Custom Buttons */
+        .btn-custom-pink {
+            background-color: var(--primary-pink);
+            color: #2c2c2c;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 24px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom-pink:hover {
+            background-color: var(--primary-pink-hover);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 166, 181, 0.4);
+        }
+
+        .btn-custom-turquoise {
+            background-color: var(--turquoise);
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 24px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom-turquoise:hover {
+            background-color: var(--turquoise-dark);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 181, 196, 0.4);
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        [data-bs-theme="dark"] .navbar {
+            background-color: rgba(18, 18, 18, 0.9) !important;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--turquoise);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin: 0 5px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--turquoise);
+        }
+
+        /* TOGGLE SWITCH CUSTOMIZADO PARA DARK MODE */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-switch {
+            display: inline-block;
+            height: 28px;
+            position: relative;
+            width: 58px;
+        }
+
+        .theme-switch input {
+            display: none;
+        }
+
+        .slider {
+            background-color: #e4e4e4;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6px;
+        }
+
+        .slider:before {
+            background-color: #fff;
+            bottom: 3px;
+            content: "";
+            height: 22px;
+            left: 3px;
+            position: absolute;
+            transition: .4s;
+            width: 22px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+        input:checked + .slider {
+            background-color: #3a3f58;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+            background-color: #2cb5c4;
+        }
+
+        .slider .fa-sun {
+            color: #f39c12;
+            font-size: 13px;
+        }
+
+        .slider .fa-moon {
+            color: #f1c40f;
+            font-size: 13px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, rgba(248, 192, 202, 0.15) 0%, rgba(44, 181, 196, 0.1) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-avatar-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-avatar {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--turquoise);
+            box-shadow: var(--shadow-lg);
+            padding: 3px;
+            background-color: #fff;
+        }
+
+        .verified-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: var(--turquoise);
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #fff;
+        }
+
+        /* Card Styling */
+        .product-card {
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            background-color: var(--card-bg-light);
+            transition: all 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background-color: #f9f9f9;
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .badge-category {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--text-dark);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            z-index: 1;
+        }
+
+        /* ETIQUETAS DE PLATAFORMAS DE AFILIADO */
+        .badge-store {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            z-index: 1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .badge-shopee {
+            background-color: #EE4D2D;
+            color: #ffffff;
+        }
+
+        .badge-mercadolivre {
+            background-color: #FFF159;
+            color: #2D3277;
+        }
+
+        .badge-amazon {
+            background-color: #232F3E;
+            color: #FF9900;
+        }
+
+        .badge-temu {
+            background-color: #FF6E00;
+            color: #ffffff;
+        }
+
+        /* Section Titles */
+        .section-title {
+            position: relative;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-pink), var(--turquoise));
+            border-radius: 2px;
+        }
+
+        /* Filter Pills */
+        .filter-btn {
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg-light);
+            color: var(--text-dark);
+            border-radius: 30px;
+            padding: 8px 18px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            margin: 3px;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--turquoise);
+            color: #fff;
+            border-color: var(--turquoise);
+        }
+
+        /* Contact Form & Modal Inputs */
+        .form-control, .form-select {
+            border-radius: 12px;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg-light);
+            color: var(--text-dark);
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--turquoise);
+            box-shadow: 0 0 0 0.25rem rgba(44, 181, 196, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg-light);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-dark);
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(44, 181, 196, 0.1);
+            color: var(--turquoise);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 6px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background-color: var(--turquoise);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        #formAlert {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR FIXA (Navegação & Toggle Switch Dark Mode) -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#hero">
+                <i class="fa-solid fa-house-heart text-danger me-2"></i>
+                <span style="color: var(--turquoise)">casa.</span><span style="color: var(--primary-pink-hover)">facilepratica</span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#achadinhos">Achadinhos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#depoimentos">Avaliações</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                    
+                    <!-- CHAVE TOGGLE SLIDER MODO CLARO / MODO ESCURO -->
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0 d-flex align-items-center">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkboxToggle">
+                                <input type="checkbox" id="checkboxToggle" />
+                                <div class="slider">
+                                    <i class="fa-solid fa-sun"></i>
+                                    <i class="fa-solid fa-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- SEÇÃO HERO / PERFIL -->
+        <section id="hero" class="hero-section text-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="profile-avatar-container mb-3">
+                            <!-- Foto Real do Instagram da Vânia -->
+                            <img src="https://lookaside.fbsbx.com/lookaside/crawler/instagram/casa.facilepratica/profile_pic.jpg" alt="Vânia - casa.facilepratica" class="profile-avatar" onerror="this.src='258166395_258153742853254_5523730172980386594_n.jpg'">
+                            <span class="verified-badge"><i class="fa-solid fa-check text-white fs-6"></i></span>
+                        </div>
+                        
+                        <h1 class="fw-bold mb-2">Vânia | Dicas de Casa e Achadinhos</h1>
+                        <p class="lead text-muted mb-3">@casa.facilepratica • 95,7 mil seguidores</p>
+                        
+                        <p class="fs-5 mb-4 mx-auto" style="max-width: 600px;">
+                            🏡 Facilito sua rotina com dicas reais e organização.<br>
+                            ✨ <strong>Casa Prática • Decoração • Achadinhos Verificados</strong>
+                        </p>
+                        
+                        <div class="d-flex flex-wrap justify-content-center gap-2">
+                            <a href="#achadinhos" class="btn btn-custom-turquoise"><i class="fa-solid fa-bag-shopping me-2"></i> Ver Achadinhos</a>
+                            
+                            <!-- Botão para Cadastrar Novo Achadinho (Painel Vânia) -->
+                            <button class="btn btn-custom-pink" data-bs-toggle="modal" data-bs-target="#addLinkModal">
+                                <i class="fa-solid fa-circle-plus me-2"></i> ➕ Cadastrar Novo Achadinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO SOBRE -->
+        <section id="sobre" class="py-5">
+            <div class="container">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-6">
+                        <div class="p-3 border rounded-4 bg-body-tertiary shadow-sm text-center">
+                            <img src="image_29cce3.png" alt="Perfil Instagram Vânia" class="img-fluid rounded-3" onerror="this.src='https://placehold.co/600x350/f8c0ca/2d3748?text=Perfil+Instagram'">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <span class="badge bg-danger-subtle text-danger mb-2 px-3 py-2 rounded-pill">Quem Sou Eu</span>
+                        <h2 class="fw-bold mb-3">Transformando casas em lar de forma simples e econômica!</h2>
+                        <p class="text-muted">
+                            Olá! Sou a Vânia, criadora do perfil <strong>@casa.facilepratica</strong>. Minha missão é ajudar você a otimizar o tempo e organizar sua casa com achadinhos testados, aprovados e com excelente custo-benefício.
+                        </p>
+                        <p class="text-muted">
+                            Aqui você encontra links confiáveis das melhores lojas (Shopee, Mercado Livre, Amazon, Temu) para comprar utensílios, itens de decoração e itens funcionais com segurança total.
+                        </p>
+                        
+                        <div class="row g-3 mt-2">
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-solid fa-circle-check text-success fs-4 me-2"></i>
+                                    <span>Links Verificados</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-solid fa-circle-check text-success fs-4 me-2"></i>
+                                    <span>Ofertas Diárias</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO VITRINE DE ACHADINHOS (Filtros por Categoria e Plataforma) -->
+        <section id="achadinhos" class="py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="section-title">Meus Achadinhos Recomendados</h2>
+                    <p class="text-muted">Filtre por categoria, plataforma de compra ou busque diretamente</p>
+                </div>
+
+                <!-- Barra de Pesquisa e Filtros JS -->
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+                            <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Buscar achadinho (ex: airfryer, potes, shopee...)...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de Categoria Dinâmicos + Plataforma -->
+                <div class="d-flex flex-wrap justify-content-center mb-4" id="categoryFilters">
+                    <button class="filter-btn active" data-filter="todos">Todos os Itens</button>
+                    <!-- Categorias -->
+                    <button class="filter-btn" data-filter="cozinha">Cozinha</button>
+                    <button class="filter-btn" data-filter="organizacao">Organização</button>
+                    <button class="filter-btn" data-filter="decoracao">Decoração</button>
+                    <button class="filter-btn" data-filter="eletro">Eletrodomésticos</button>
+                    <!-- Lojas / Afiliados -->
+                    <button class="filter-btn border-danger text-danger" data-filter="shopee"><i class="fa-solid fa-bag-shopping me-1"></i> Shopee</button>
+                    <button class="filter-btn border-warning text-dark" data-filter="mercadolivre"><i class="fa-solid fa-handshake me-1"></i> Mercado Livre</button>
+                    <button class="filter-btn border-dark text-dark" data-filter="amazon"><i class="fa-brands fa-amazon me-1"></i> Amazon</button>
+                    <button class="filter-btn border-warning text-warning" data-filter="temu"><i class="fa-solid fa-gift me-1"></i> Temu</button>
+                </div>
+
+                <!-- GRID DE PRODUTOS -->
+                <div class="row g-4" id="productsGrid">
+                    
+                    <!-- Produto 1: Shopee -->
+                    <div class="col-sm-6 col-lg-4 product-item" data-category="cozinha" data-store="shopee" data-title="kit potes hermeticos vidro shopee">
+                        <div class="product-card">
+                            <div class="product-img-wrapper">
+                                <span class="badge-category">Cozinha</span>
+                                <span class="badge-store badge-shopee"><i class="fa-solid fa-bag-shopping"></i> Shopee</span>
+                                <img src="https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=600&q=80" alt="Kit Potes Herméticos">
+                            </div>
+                            <div class="card-body p-4 text-center">
+                                <div class="text-warning mb-2"><i class="fa-solid fa-star"></i> 4.9 (320)</div>
+                                <h5 class="card-title fw-bold">Kit 5 Potes Herméticos de Vidro</h5>
+                                <p class="card-text text-muted small">Mantém os alimentos frescos por muito mais tempo. Livre de BPA.</p>
+                                <div class="fs-4 fw-bold text-success mb-3">R$ 89,90</div>
+                                <a href="https://shopee.com.br" target="_blank" class="btn btn-custom-turquoise w-100">
+                                    <i class="fa-solid fa-arrow-up-right-from-square me-2"></i> Ver Oferta na Shopee
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produto 2: Mercado Livre -->
+                    <div class="col-sm-6 col-lg-4 product-item" data-category="eletro" data-store="mercadolivre" data-title="fritada ar airfryer digital mercado livre">
+                        <div class="product-card">
+                            <div class="product-img-wrapper">
+                                <span class="badge-category">Eletro</span>
+                                <span class="badge-store badge-mercadolivre"><i class="fa-solid fa-handshake"></i> Mercado Livre</span>
+                                <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=600&q=80" alt="Airfryer Digital">
+                            </div>
+                            <div class="card-body p-4 text-center">
+                                <div class="text-warning mb-2"><i class="fa-solid fa-star"></i> 5.0 (540)</div>
+                                <h5 class="card-title fw-bold">Fritadeira Elétrica Airfryer Digital</h5>
+                                <p class="card-text text-muted small">Praticidade total no dia a dia. Painel touch e capacidade de 4L.</p>
+                                <div class="fs-4 fw-bold text-success mb-3">R$ 349,00</div>
+                                <a href="https://mercadolivre.com.br" target="_blank" class="btn btn-custom-turquoise w-100">
+                                    <i class="fa-solid fa-arrow-up-right-from-square me-2"></i> Ver no Mercado Livre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produto 3: Amazon -->
+                    <div class="col-sm-6 col-lg-4 product-item" data-category="organizacao" data-store="amazon" data-title="organizador armarios gavetas amazon">
+                        <div class="product-card">
+                            <div class="product-img-wrapper">
+                                <span class="badge-category">Organização</span>
+                                <span class="badge-store badge-amazon"><i class="fa-brands fa-amazon"></i> Amazon</span>
+                                <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=80" alt="Organizadores de Geladeira">
+                            </div>
+                            <div class="card-body p-4 text-center">
+                                <div class="text-warning mb-2"><i class="fa-solid fa-star"></i> 4.8 (180)</div>
+                                <h5 class="card-title fw-bold">Organizadores de Acrílico Transparentes</h5>
+                                <p class="card-text text-muted small">Perfeitos para geladeiras, despensas e armários de banheiro.</p>
+                                <div class="fs-4 fw-bold text-success mb-3">R$ 45,90</div>
+                                <a href="https://amazon.com.br" target="_blank" class="btn btn-custom-turquoise w-100">
+                                    <i class="fa-solid fa-arrow-up-right-from-square me-2"></i> Ver Oferta na Amazon
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produto 4: Temu -->
+                    <div class="col-sm-6 col-lg-4 product-item" data-category="decoracao" data-store="temu" data-title="luminaria led decorativa mesa temu">
+                        <div class="product-card">
+                            <div class="product-img-wrapper">
+                                <span class="badge-category">Decoração</span>
+                                <span class="badge-store badge-temu"><i class="fa-solid fa-gift"></i> Temu</span>
+                                <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80" alt="Luminária de Mesa LED">
+                            </div>
+                            <div class="card-body p-4 text-center">
+                                <div class="text-warning mb-2"><i class="fa-solid fa-star"></i> 4.7 (95)</div>
+                                <h5 class="card-title fw-bold">Luminária LED Minimalista</h5>
+                                <p class="card-text text-muted small">Crie um clima aconchegante na sua sala de estar ou quarto.</p>
+                                <div class="fs-4 fw-bold text-success mb-3">R$ 39,90</div>
+                                <a href="https://temu.com" target="_blank" class="btn btn-custom-turquoise w-100">
+                                    <i class="fa-solid fa-arrow-up-right-from-square me-2"></i> Ver Oferta na Temu
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produto 5: Shopee -->
+                    <div class="col-sm-6 col-lg-4 product-item" data-category="cozinha" data-store="shopee" data-title="dispenser sabao detergente organizador shopee">
+                        <div class="product-card">
+                            <div class="product-img-wrapper">
+                                <span class="badge-category">Cozinha</span>
+                                <span class="badge-store badge-shopee"><i class="fa-solid fa-bag-shopping"></i> Shopee</span>
+                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80" alt="Dispenser de Detergente">
+                            </div>
+                            <div class="card-body p-4 text-center">
+                                <div class="text-warning mb-2"><i class="fa-solid fa-star"></i> 4.9 (410)</div>
+                                <h5 class="card-title fw-bold">Dispenser de Detergente com Porta Esponja</h5>
+                                <p class="card-text text-muted small">Economize sabão e mantenha a pia da cozinha super limpa.</p>
+                                <div class="fs-4 fw-bold text-success mb-3">R$ 29,90</div>
+                                <a href="https://shopee.com.br" target="_blank" class="btn btn-custom-turquoise w-100">
+                                    <i class="fa-solid fa-arrow-up-right-from-square me-2"></i> Ver Oferta na Shopee
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produto 6: Mercado Livre -->
+                    <div class="col-sm-6 col-lg-4 product-item" data-category="organizacao" data-store="mercadolivre" data-title="mop giratorio limpeza facil mercado livre">
+                        <div class="product-card">
+                            <div class="product-img-wrapper">
+                                <span class="badge-category">Organização</span>
+                                <span class="badge-store badge-mercadolivre"><i class="fa-solid fa-handshake"></i> Mercado Livre</span>
+                                <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=600&q=80" alt="Mop Giratório">
+                            </div>
+                            <div class="card-body p-4 text-center">
+                                <div class="text-warning mb-2"><i class="fa-solid fa-star"></i> 5.0 (820)</div>
+                                <h5 class="card-title fw-bold">Mop Giratório Limpeza Prática</h5>
+                                <p class="card-text text-muted small">O queridinho da limpeza da casa. Balde com centrifugador inox.</p>
+                                <div class="fs-4 fw-bold text-success mb-3">R$ 119,90</div>
+                                <a href="https://mercadolivre.com.br" target="_blank" class="btn btn-custom-turquoise w-100">
+                                    <i class="fa-solid fa-arrow-up-right-from-square me-2"></i> Ver no Mercado Livre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL BOOTSTRAP: CADASTRAR NOVO ACHADINHO (PAINEL DA VÂNIA) -->
+        <div class="modal fade" id="addLinkModal" tabindex="-1" aria-labelledby="addLinkModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content rounded-4 border-0">
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fw-bold" id="addLinkModalLabel">➕ Cadastrar Novo Link de Afiliado</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-muted small mb-3">Preencha as informações do produto para publicá-lo automaticamente na sua vitrine.</p>
+                        
+                        <form id="newProductForm">
+                            <div class="mb-3">
+                                <label for="newTitle" class="form-label fw-semibold">Título do Produto</label>
+                                <input type="text" class="form-control" id="newTitle" placeholder="Ex: Panela de Pressão Elétrica" required>
+                            </div>
+                            
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <label for="newCategory" class="form-label fw-semibold">Categoria</label>
+                                    <select class="form-select" id="newCategory" required>
+                                        <option value="cozinha">Cozinha</option>
+                                        <option value="organizacao">Organização</option>
+                                        <option value="decoracao">Decoração</option>
+                                        <option value="eletro">Eletrodomésticos</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="newStore" class="form-label fw-semibold">Plataforma</label>
+                                    <select class="form-select" id="newStore" required>
+                                        <option value="shopee">Shopee</option>
+                                        <option value="mercadolivre">Mercado Livre</option>
+                                        <option value="amazon">Amazon</option>
+                                        <option value="temu">Temu</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <label for="newPrice" class="form-label fw-semibold">Preço (R$)</label>
+                                    <input type="text" class="form-control" id="newPrice" placeholder="Ex: 79,90" required>
+                                </div>
+                                <div class="col-6">
+                                    <label for="newImg" class="form-label fw-semibold">Link da Imagem (URL)</label>
+                                    <input type="url" class="form-control" id="newImg" placeholder="https://..." required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="newAffiliateUrl" class="form-label fw-semibold">Seu Link de Afiliado</label>
+                                <input type="url" class="form-control" id="newAffiliateUrl" placeholder="https://shope.ee/..." required>
+                            </div>
+
+                            <div class="text-end">
+                                <button type="button" class="btn btn-secondary rounded-pill me-2" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-custom-turquoise">Salvar e Publicar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DEPOIMENTOS & ACCORDION DE DÚVIDAS -->
+        <section id="depoimentos" class="py-5">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">O que dizem os seguidores</h2>
+                    <p class="text-muted">Feedback de quem já comprou com as dicas da Vânia</p>
+                </div>
+
+                <div class="row g-4 mb-5">
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm p-3">
+                            <div class="card-body">
+                                <div class="text-warning mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="card-text">"Comprei o kit de organizadores pelo link da Vânia e chegou super rápido! Minha geladeira mudou de vida."</p>
+                                <h6 class="fw-bold mb-0">— Camila R. (@camilalima)</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm p-3">
+                            <div class="card-body">
+                                <div class="text-warning mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="card-text">"Sempre fico de olho no perfil pra ver os achadinhos. Economizei muito comprando a Airfryer que ela indicou!"</p>
+                                <h6 class="fw-bold mb-0">— Mariana Santos</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm p-3">
+                            <div class="card-body">
+                                <div class="text-warning mb-2">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="card-text">"Dicas maravilhosas! O Mop Limpeza Prática facilitou muito minha rotina na faxina diária."</p>
+                                <h6 class="fw-bold mb-0">— Luciana M.</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACCORDION BOOTSTRAP (Dúvidas Frequentes) -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h4 class="fw-bold text-center mb-4">Dúvidas Frequentes</h4>
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        Como funcionam os links de indicação?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Ao clicar nos botões dos produtos, você será redirecionado para a loja oficial (Shopee, Mercado Livre, Amazon, Temu) com o preço original e a segurança da plataforma!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                        Os produtos são testados pela Vânia?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Sim! Selecionamos apenas produtos de vendedores bem avaliados ou que foram testados e aprovados pela Vânia no perfil do Instagram.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SEÇÃO FORMULÁRIO DE CONTATO (4 Campos com Validação JS) -->
+        <section id="contato" class="py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card border-0 shadow-lg p-4 p-md-5 rounded-4">
+                            <div class="text-center mb-4">
+                                <h2 class="section-title">Entre em Contato</h2>
+                                <p class="text-muted">Quer indicar um produto ou fazer uma parceria? Envie uma mensagem!</p>
+                            </div>
+
+                            <!-- Alerta de Validação/Sucesso -->
+                            <div class="alert alert-dismissible fade show" role="alert" id="formAlert">
+                                <span id="alertMessage"></span>
+                                <button type="button" class="btn-close" onclick="closeAlert()"></button>
+                            </div>
+
+                            <!-- Formulário de 4 Campos Obrigatórios -->
+                            <form id="contactForm" novalidate>
+                                <div class="row g-3">
+                                    <!-- Campo 1: Nome -->
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label fw-semibold">Nome Completo *</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Seu nome completo">
+                                        <div class="invalid-feedback">Por favor, digite seu nome.</div>
+                                    </div>
+
+                                    <!-- Campo 2: E-mail -->
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label fw-semibold">E-mail de Contato *</label>
+                                        <input type="email" class="form-control" id="email" placeholder="seuemail@exemplo.com">
+                                        <div class="invalid-feedback">Digite um e-mail válido.</div>
+                                    </div>
+
+                                    <!-- Campo 3: Assunto -->
+                                    <div class="col-12">
+                                        <label for="subject" class="form-label fw-semibold">Assunto *</label>
+                                        <select class="form-select" id="subject">
+                                            <option value="" selected disabled>Selecione um assunto</option>
+                                            <option value="Dúvida sobre Achadinho">Dúvida sobre produto</option>
+                                            <option value="Parceria / Publi">Parcerias e Marcas</option>
+                                            <option value="Sugestão">Sugestão de conteúdo</option>
+                                            <option value="Outros">Outros</option>
+                                        </select>
+                                        <div class="invalid-feedback">Selecione um assunto.</div>
+                                    </div>
+
+                                    <!-- Campo 4: Mensagem -->
+                                    <div class="col-12">
+                                        <label for="message" class="form-label fw-semibold">Sua Mensagem *</label>
+                                        <textarea class="form-control" id="message" rows="4" placeholder="Escreva aqui os detalhes da sua mensagem..."></textarea>
+                                        <div class="invalid-feedback">A mensagem precisa ter pelo menos 10 caracteres.</div>
+                                    </div>
+
+                                    <!-- Botão Enviar -->
+                                    <div class="col-12 text-center mt-4">
+                                        <button type="submit" class="btn btn-custom-turquoise px-5 py-3 fs-6">
+                                            <i class="fa-solid fa-paper-plane me-2"></i> Enviar Mensagem
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <div class="mb-3">
+                <a href="https://instagram.com" target="_blank" class="social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank" class="social-icon" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://whatsapp.com" target="_blank" class="social-icon" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <p class="mb-1 text-muted"><strong>casa.facilepratica</strong> • Vânia | Dicas de Casa e Achadinhos</p>
+            <p class="small text-muted mb-0">Aviso legal: Participamos de programas de afiliados. Ao comprar pelos links recomendados, podemos receber uma comissão sem custo adicional para você.</p>
+            <p class="small text-muted mt-2">&copy; 2026 - Desenvolvido para o Projeto Acadêmico de Front-end.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle com Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- LÓGICA JAVASCRIPT PERSONALIZADA (ES6+) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* ========================================================
+               1. TOGGLE SWITCH - MODO ESCURO / CLARO
+            ======================================================== */
+            const checkboxToggle = document.getElementById('checkboxToggle');
+            const htmlElement = document.documentElement;
+
+            // Checar modo salvo previamente
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                htmlElement.setAttribute('data-bs-theme', 'dark');
+                checkboxToggle.checked = true;
+            }
+
+            checkboxToggle.addEventListener('change', () => {
+                if (checkboxToggle.checked) {
+                    htmlElement.setAttribute('data-bs-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    htmlElement.setAttribute('data-bs-theme', 'light');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+
+            /* ========================================================
+               2. EFEITO JS: FILTRO DE CATEGORIA/LOJA E BUSCA EM TEMPO REAL
+            ======================================================== */
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const searchInput = document.getElementById('searchInput');
+
+            // Função global de filtragem
+            function applyFilters() {
+                const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+                const searchText = searchInput.value.toLowerCase();
+                const productItems = document.querySelectorAll('.product-item');
+
+                productItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    const itemStore = item.getAttribute('data-store');
+                    const itemTitle = item.getAttribute('data-title').toLowerCase();
+
+                    const matchesCategoryOrStore = (
+                        activeFilter === 'todos' || 
+                        itemCategory === activeFilter || 
+                        itemStore === activeFilter
+                    );
+                    const matchesText = itemTitle.includes(searchText);
+
+                    if (matchesCategoryOrStore && matchesText) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            // Escutadores de eventos para botões
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    applyFilters();
+                });
+            });
+
+            // Escutador de eventos para campo de busca
+            searchInput.addEventListener('input', applyFilters);
+
+
+            /* ========================================================
+               3. CADASTRO DINÂMICO DE NOVOS ACHADINHOS (MODAL VÂNIA)
+            ======================================================== */
+            const newProductForm = document.getElementById('newProductForm');
+
+            newProductForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const title = document.getElementById('newTitle').value;
+                const category = document.getElementById('newCategory').value;
+                const store = document.getElementById('newStore').value;
+                const price = document.getElementById('newPrice').value;
+                const img = document.getElementById('newImg').value;
+                const affiliateUrl = document.getElementById('newAffiliateUrl').value;
+
+                // Configurar visual da loja
+                let storeBadgeHtml = '';
+                let storeBtnText = '';
+
+                switch (store) {
+                    case 'shopee':
+                        storeBadgeHtml = '<span class="badge-store badge-shopee"><i class="fa-solid fa-bag-shopping"></i> Shopee</span>';
+                        storeBtnText = 'Ver Oferta na Shopee';
+                        break;
+                    case 'mercadolivre':
+                        storeBadgeHtml = '<span class="badge-store badge-mercadolivre"><i class="fa-solid fa-handshake"></i> Mercado Livre</span>';
+                        storeBtnText = 'Ver no Mercado Livre';
+                        break;
+                    case 'amazon':
+                        storeBadgeHtml = '<span class="badge-store badge-amazon"><i class="fa-brands fa-amazon"></i> Amazon</span>';
+                        storeBtnText = 'Ver Oferta na Amazon';
+                        break;
+                    case 'temu':
+                        storeBadgeHtml = '<span class="badge-store badge-temu"><i class="fa-solid fa-gift"></i> Temu</span>';
+                        storeBtnText = 'Ver Oferta na Temu';
+                        break;
+                }
+
+                const categoryCapitalized = category.charAt(0).toUpperCase() + category.slice(1);
+
+                // Criar o novo card dinamicamente
+                const newCardCol = document.createElement('div');
+                newCardCol.className = 'col-sm-6 col-lg-4 product-item';
+                newCardCol.setAttribute('data-category', category);
+                newCardCol.setAttribute('data-store', store);
+                newCardCol.setAttribute('data-title', `${title} ${category} ${store}`.toLowerCase());
+
+                newCardCol.innerHTML = `
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <span class="badge-category">${categoryCapitalized}</span>
+                            ${storeBadgeHtml}
+                            <img src="${img}" alt="${title}" onerror="this.src='https://placehold.co/600x400/2cb5c4/ffffff?text=Achadinho'">
+                        </div>
+                        <div class="card-body p-4 text-center">
+                            <div class="text-warning mb-2"><i class="fa-solid fa-star"></i> 5.0 (Novo)</div>
+                            <h5 class="card-title fw-bold">${title}</h5>
+                            <p class="card-text text-muted small">Novo achadinho recomendado pela Vânia!</p>
+                            <div class="fs-4 fw-bold text-success mb-3">R$ ${price}</div>
+                            <a href="${affiliateUrl}" target="_blank" class="btn btn-custom-turquoise w-100">
+                                <i class="fa-solid fa-arrow-up-right-from-square me-2"></i> ${storeBtnText}
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                // Inserir no início da grade de produtos
+                const productsGrid = document.getElementById('productsGrid');
+                productsGrid.insertBefore(newCardCol, productsGrid.firstChild);
+
+                // Fechar o modal e resetar o formulário
+                const modalElement = document.getElementById('addLinkModal');
+                const bootstrapModal = bootstrap.Modal.getInstance(modalElement);
+                bootstrapModal.hide();
+                newProductForm.reset();
+
+                // Re-aplicar filtros
+                applyFilters();
+            });
+
+
+            /* ========================================================
+               4. VALIDAÇÃO DINÂMICA DO FORMULÁRIO DE CONTATO
+            ======================================================== */
+            const contactForm = document.getElementById('contactForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const subjectInput = document.getElementById('subject');
+            const messageInput = document.getElementById('message');
+            const formAlert = document.getElementById('formAlert');
+            const alertMessage = document.getElementById('alertMessage');
+
+            contactForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                let isValid = true;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                // Validação do Nome
+                if (nameInput.value.trim() === '') {
+                    nameInput.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    nameInput.classList.remove('is-invalid');
+                    nameInput.classList.add('is-valid');
+                }
+
+                // Validação do E-mail
+                if (!emailRegex.test(emailInput.value.trim())) {
+                    emailInput.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    emailInput.classList.remove('is-invalid');
+                    emailInput.classList.add('is-valid');
+                }
+
+                // Validação do Assunto
+                if (!subjectInput.value) {
+                    subjectInput.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    subjectInput.classList.remove('is-invalid');
+                    subjectInput.classList.add('is-valid');
+                }
+
+                // Validação da Mensagem
+                if (messageInput.value.trim().length < 10) {
+                    messageInput.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    messageInput.classList.remove('is-invalid');
+                    messageInput.classList.add('is-valid');
+                }
+
+                if (isValid) {
+                    showAlert('Mensagem enviada com sucesso! A Vânia entrará em contato em breve.', 'success');
+                    contactForm.reset();
+                    document.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+                } else {
+                    showAlert('Por favor, preencha todos os campos corretamente antes de enviar.', 'danger');
+                }
+            });
+
+            function showAlert(msg, type) {
+                formAlert.className = `alert alert-${type} alert-dismissible fade show`;
+                alertMessage.textContent = msg;
+                formAlert.style.display = 'block';
+            }
+        });
+
+        function closeAlert() {
+            document.getElementById('formAlert').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
